@@ -1,5 +1,6 @@
 name: Python Package
 on:
+  workflow_dispatch:
   pull_request:
     branches:
       - main
