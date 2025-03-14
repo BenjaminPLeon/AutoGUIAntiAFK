@@ -1,0 +1,24 @@
+name: Python Package
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-package-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install Dependencies
+        run: |
+          py -m pip install pyautogui
+          pip install --upgrade pyinstaller
+
+      - name: Build python exe
+        run: cd ./src && pyinstaller --noconfirm --clean --distpath ../dist main.py
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
