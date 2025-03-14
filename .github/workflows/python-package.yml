@@ -14,3 +14,4 @@ jobs:
       - run: py -m pip install pyautogui
       - run: pip install --upgrade pyinstaller
       - run: cd ./src && pyinstaller -y --clean main.py
+      - uses: stefanzweifel/git-auto-commit-action@v5
