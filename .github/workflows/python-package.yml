@@ -11,7 +11,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
-      - run: py -m pip install pyautogui
-      - run: pip install --upgrade pyinstaller
-      - run: cd ./src && pyinstaller -y --clean main.py
+
+      - name: Install Dependencies
+        run: |
+          py -m pip install pyautogui
+          pip install --upgrade pyinstaller
+
+      - name: Build python exe
+        run: cd ./src && pyinstaller -y --clean main.py
+
       - uses: stefanzweifel/git-auto-commit-action@v5
