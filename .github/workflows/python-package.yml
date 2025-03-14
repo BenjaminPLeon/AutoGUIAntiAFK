@@ -1,0 +1,16 @@
+name: Python Package
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-package-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: py -m pip install pyautogui
+      - run: pip install --upgrade pyinstaller
+      - run: cd ./src && pyinstaller -y --clean main.py
